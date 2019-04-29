@@ -4,7 +4,6 @@
 #include <linux/sched/signal.h>
 MODULE_LICENSE("GPL");
 
-//void calculate_stats();
 int count = 0;
 static const char *task_state_array[] = {
     "TASK_RUNNING",        /*  0 */
@@ -40,9 +39,7 @@ void calculate_stats(void) {
 	int np = 0;
 	for_each_process(task) {
 		np = np+1;
-		printk(KERN_INFO "PID %d running, Parent PID %d, State: %s", task->pid, task->parent->pid, get_task_state(task));
-		//printk(KERN_INFO "Parent PID %d, ", task->parent->pid);
-		//printk(KERN_INFO "State: %s\n", get_task_state); 
+		printk(KERN_INFO "PID %d running, Parent PID %d, State: %s", task->pid, task->parent->pid, get_task_state(task)); 
 	}
 	printk(KERN_INFO "Percentage TASK_RUNNING: %d", (count*100)/np);
 	printk(KERN_INFO "STATS As calculated above");
